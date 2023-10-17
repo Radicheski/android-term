@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Match match = new Match("AAAAA");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void backspaceClick(View view) {
         if (view instanceof Button button) {
-            Log.i(getLocalClassName(), button.getText().toString());
+            match.deleteLetter();
         }
     }
 
     private void enterClick(View view) {
         if (view instanceof Button button) {
-            Log.i(getLocalClassName(), button.getText().toString());
+            match.checkAnswer();
         }
     }
 
     private void letterClick(View view) {
         if (view instanceof Button button) {
-            Log.i(getLocalClassName(), button.getText().toString());
+            match.addLetter(button.getText());
         }
     }
 
