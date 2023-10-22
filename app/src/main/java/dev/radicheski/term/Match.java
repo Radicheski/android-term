@@ -1,23 +1,29 @@
 package dev.radicheski.term;
 
+import android.widget.TextView;
+
 public class Match {
 
-    private Atempt atempt;
+    private int cursor = 0;
+    private Atempt[] atempt;
 
-    public Match(String word) {
-        atempt = new Atempt(word);
+    public Match(String word, TextView[][] views) {
+        atempt = new Atempt[views.length];
+        for (int i = 0; i < atempt.length; i++) {
+            atempt[i] = new Atempt(word, views[i]);
+        }
     }
 
     public void checkAnswer() {
-        atempt.checkAnswer();
+        atempt[cursor].checkAnswer();
     }
 
     public void deleteLetter() {
-        atempt.deleteLetter();
+        atempt[cursor].deleteLetter();
     }
 
     public void addLetter(CharSequence letter) {
-        atempt.addLetter(letter);
+        atempt[cursor].addLetter(letter);
     }
 
 }

@@ -1,6 +1,7 @@
 package dev.radicheski.term;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -8,10 +9,11 @@ class Atempt {
 
     private String word;
     private int cursor = 0;
-    private Character[] letters = new Character[5];
+    private TextView[] letters;
 
-    Atempt(String word) {
+    Atempt(String word, TextView[] views) {
         this.word = word;
+        this.letters = views;
     }
 
     public void checkAnswer() {
@@ -19,12 +21,16 @@ class Atempt {
     }
 
     public void deleteLetter() {
+        if (cursor == 0) return;
+
         cursor--;
-        letters[cursor] = null;
+        letters[cursor].setText(null);
     }
 
     public void addLetter(CharSequence letter) {
-        letters[cursor] = letter.charAt(0);
+        if (cursor == letters.length) return;
+
+        letters[cursor].setText(letter);
         cursor++;
     }
 

@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Match match = new Match("AAAAA");
+    private Match match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
                     .getIdentifier("key" + c, "id", getPackageName()));
             letter.setOnClickListener(this::letterClick);
         }
+
+        TextView[][] views = new TextView[6][5];
+
+        for (int atempt = 0; atempt < 6; atempt++) {
+            for (int letter = 0; letter < 5; letter++) {
+                views[atempt][letter] = findViewById(getResources()
+                        .getIdentifier("atempt" + atempt + "letter" + letter, "id", getPackageName()));
+            }
+        }
+
+        match = new Match("", views);
     }
 
     private void backspaceClick(View view) {
