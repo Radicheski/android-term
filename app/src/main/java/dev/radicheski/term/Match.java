@@ -2,12 +2,16 @@ package dev.radicheski.term;
 
 import android.widget.TextView;
 
+import dev.radicheski.term.words.WordRepository;
+
 public class Match {
 
     private int cursor = 0;
     private Atempt[] atempt;
 
-    public Match(String word, TextView[][] views) {
+    public Match(TextView[][] views) {
+        String word = WordRepository.getRandomWord();
+
         atempt = new Atempt[views.length];
         for (int i = 0; i < atempt.length; i++) {
             atempt[i] = new Atempt(word, views[i]);

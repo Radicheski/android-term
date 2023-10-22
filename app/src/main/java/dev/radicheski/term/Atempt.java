@@ -3,7 +3,7 @@ package dev.radicheski.term;
 import android.util.Log;
 import android.widget.TextView;
 
-import java.util.Arrays;
+import dev.radicheski.term.words.WordRepository;
 
 class Atempt {
 
@@ -12,12 +12,21 @@ class Atempt {
     private TextView[] letters;
 
     Atempt(String word, TextView[] views) {
-        this.word = word;
+        this.word = WordRepository.normalize(word);
         this.letters = views;
     }
 
     public void checkAnswer() {
-        Log.i(getClass().getName(), Boolean.toString(word.equalsIgnoreCase(Arrays.toString(letters))));
+        if (cursor < letters.length) return;
+
+        String inputWord = getInputWord();
+
+        if (!WordRepository.checkWord(inputWord)) {
+            Log.e(getClass().getName(), "Invalid word.");
+            return;
+        }
+
+        Log.i(getClass().getName(), Boolean.toString(word.equalsIgnoreCase(inputWord)));
     }
 
     public void deleteLetter() {
@@ -34,4 +43,11 @@ class Atempt {
         cursor++;
     }
 
+    private String getInputWord() {
+        StringBuilder word = new StringBuilder();
+        for (TextView letter : letters) {
+            word.append(letter.getText());
+        }
+        return WordRepository.normalize(word.toString());
+    }
 }
