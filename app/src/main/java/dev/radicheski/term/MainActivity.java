@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         for (int atempt = 0; atempt < 6; atempt++) {
             for (int letter = 0; letter < 5; letter++) {
-                views[atempt][letter] = findViewById(getResources()
-                        .getIdentifier("atempt" + atempt + "letter" + letter, "id", getPackageName()));
+                int id = getResources().getIdentifier("atempt" + atempt + "_letter" + letter, "id", getPackageName());
+                views[atempt][letter] = findViewById(id);
             }
         }
 
