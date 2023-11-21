@@ -68,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.show();
                 return;
             }
-
-            //TODO Atualizar cores do teclado
+            keyboard.updateLayout(answer.getCases());
         }
     }
 

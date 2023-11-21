@@ -3,6 +3,7 @@ package dev.radicheski.term;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class Keyboard {
@@ -50,6 +51,21 @@ public class Keyboard {
 
     public void setBackpaceListener(View.OnClickListener listener) {
         this.backspaceListener = listener;
+    }
+
+    public void updateLayout(Map<Character, Answer.Case> answer) {
+        for (Button letter: letters) {
+            Answer.Case answerCase = answer.get(letter.getText().charAt(0));
+            if (Objects.isNull(answerCase)) continue;
+
+            letter.setTextColor(answerCase.getTextColor());
+            letter.setBackgroundColor(answerCase.getBackgroundColor());
+
+            if (answerCase == Answer.Case.WRONG_LETTER) {
+                letter.setAlpha(0.1f);
+                letter.setEnabled(false);
+            }
+        }
     }
 
 }
