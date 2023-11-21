@@ -2,10 +2,13 @@ package dev.radicheski.term;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 import dev.radicheski.term.words.WordRepository;
 
@@ -56,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
         if (view instanceof Button button) {
             Answer answer = match.checkAnswer();
             if (answer == Answer.INCOMPLETE_WORD) return;
-            if (answer == Answer.INVALID_WORD) {
-                //TODO Mostrar alerta
+            if (answer.getCases().isEmpty() && Objects.nonNull(answer.getInput())) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(String.format("A palavra \"%s\" não foi encontrada.", answer.getInput()));
+                builder.setPositiveButton("OK", null);
+                builder.show();
                 return;
             }
 

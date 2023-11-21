@@ -6,17 +6,22 @@ import java.util.Map;
 
 public class Answer {
 
-    public static final Answer INVALID_WORD = new Answer(Map.of());
-    public static final Answer INCOMPLETE_WORD = new Answer(Map.of());
+    public static final Answer INCOMPLETE_WORD = new Answer(Map.of(), null);
 
     private final Map<Character, Case> cases;
+    private final String input;
 
-    public Answer(Map<Character, Case> cases) {
+    public Answer(Map<Character, Case> cases, String input) {
         this.cases = cases;
+        this.input = input;
     }
 
     public Map<Character, Case> getCases() {
         return cases;
+    }
+
+    public String getInput() {
+        return input;
     }
 
     public enum Case {

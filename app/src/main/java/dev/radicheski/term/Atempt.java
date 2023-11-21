@@ -22,26 +22,26 @@ class Atempt {
         if (cursor < letters.length) return Answer.INCOMPLETE_WORD;
 
         String inputWord = getInputWord();
+        Map<Character, Answer.Case> cases = new HashMap<>();
+
         if (!WordRepository.checkWord(inputWord)) {
             clear();
-            return Answer.INVALID_WORD;
-        }
-
-        Map<Character, Answer.Case> cases = new HashMap<>();
-        for (int i = 0; i < word.length(); i++) {
-            if (!word.contains(inputWord.substring(i, i + 1))) {
-                cases.put(inputWord.charAt(i), Answer.Case.WRONG_LETTER);
-                setColor(letters[i], Answer.Case.WRONG_LETTER);
-            } else if (word.charAt(i) == inputWord.charAt(i)) {
-                cases.put(inputWord.charAt(i), Answer.Case.RIGHT_PLACE);
-                setColor(letters[i], Answer.Case.RIGHT_PLACE);
-            } else {
-                cases.put(inputWord.charAt(i), Answer.Case.WRONG_PLACE);
-                setColor(letters[i], Answer.Case.WRONG_PLACE);
+        } else {
+            for (int i = 0; i < word.length(); i++) {
+                if (!word.contains(inputWord.substring(i, i + 1))) {
+                    cases.put(inputWord.charAt(i), Answer.Case.WRONG_LETTER);
+                    setColor(letters[i], Answer.Case.WRONG_LETTER);
+                } else if (word.charAt(i) == inputWord.charAt(i)) {
+                    cases.put(inputWord.charAt(i), Answer.Case.RIGHT_PLACE);
+                    setColor(letters[i], Answer.Case.RIGHT_PLACE);
+                } else {
+                    cases.put(inputWord.charAt(i), Answer.Case.WRONG_PLACE);
+                    setColor(letters[i], Answer.Case.WRONG_PLACE);
+                }
             }
         }
 
-        return new Answer(cases);
+        return new Answer(cases, inputWord);
     }
 
     private void setColor(TextView view, Answer.Case _case){
