@@ -24,7 +24,7 @@ public class Match {
     public Answer checkAnswer() {
         Answer answer = atempt[cursor].checkAnswer();
 
-        if (answer.getCases().length > 0) cursor += 1;
+        if (!answer.getCases().isEmpty()) cursor += 1;
 
         return answer;
     }

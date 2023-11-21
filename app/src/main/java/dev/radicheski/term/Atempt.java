@@ -2,6 +2,9 @@ package dev.radicheski.term;
 
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import dev.radicheski.term.words.WordRepository;
 
 class Atempt {
@@ -19,21 +22,31 @@ class Atempt {
         if (cursor < letters.length) return Answer.INCOMPLETE_WORD;
 
         String inputWord = getInputWord();
-        if (!WordRepository.checkWord(inputWord)) return Answer.INVALID_WORD; //TODO Apagar conteudo das textviews
+        if (!WordRepository.checkWord(inputWord)) {
+            clear();
+            return Answer.INVALID_WORD;
+        }
 
-        Answer.Case[] cases = new Answer.Case[letters.length];
+        Map<Character, Answer.Case> cases = new HashMap<>();
         //TODO Atualizar cores das textviews
         for (int i = 0; i < word.length(); i++) {
             if (!word.contains(inputWord.substring(i, i + 1))) {
-                cases[i] = Answer.Case.WRONG_LETTER;
+                cases.put(inputWord.charAt(i), Answer.Case.WRONG_LETTER);
             } else if (word.charAt(i) == inputWord.charAt(i)) {
-                cases[i] = Answer.Case.RIGHT_PLACE;
+                cases.put(inputWord.charAt(i), Answer.Case.RIGHT_PLACE);
             } else {
-                cases[i] = Answer.Case.WRONG_PLACE;
+                cases.put(inputWord.charAt(i), Answer.Case.WRONG_PLACE);
             }
         }
 
         return new Answer(cases);
+    }
+
+    private void clear() {
+        for (TextView view: letters) {
+            view.setText("");
+        }
+        cursor = 0;
     }
 
     public void deleteLetter() {
