@@ -27,35 +27,45 @@
                 android:id="@+id/atempt0_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt0_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt0_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt0_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt0_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -70,35 +80,45 @@
                 android:id="@+id/atempt1_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt1_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt1_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt1_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt1_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -113,35 +133,45 @@
                 android:id="@+id/atempt2_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt2_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt2_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt2_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt2_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -156,35 +186,45 @@
                 android:id="@+id/atempt3_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt3_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt3_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt3_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt3_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -199,35 +239,45 @@
                 android:id="@+id/atempt4_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt4_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt4_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt4_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt4_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
@@ -242,35 +292,45 @@
                 android:id="@+id/atempt5_letter0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt5_letter1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt5_letter2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt5_letter3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/atempt5_letter4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="TextView" />
 
         </LinearLayout>
