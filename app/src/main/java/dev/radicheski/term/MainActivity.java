@@ -15,6 +15,7 @@ import dev.radicheski.term.words.WordRepository;
 public class MainActivity extends AppCompatActivity {
 
     private Match match;
+    private Keyboard keyboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +23,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button keyBackspace = findViewById(R.id.keyBackspace);
-        keyBackspace.setOnClickListener(this::backspaceClick);
-
         Button keyEnter = findViewById(R.id.keyEnter);
-        keyEnter.setOnClickListener(this::enterClick);
 
         char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
                 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-
-        for (char c : letters) {
-            Button letter = findViewById(getResources()
-                    .getIdentifier("key" + c, "id", getPackageName()));
-            letter.setOnClickListener(this::letterClick);
+        Button[] letterButtons = new Button[letters.length];
+        for (int i = 0; i < letters.length; i++) {
+            letterButtons[i] = findViewById(getResources()
+                    .getIdentifier("key" + letters[i], "id", getPackageName()));
         }
+
+        keyboard = new Keyboard(letterButtons, keyEnter, keyBackspace);
+        keyboard.setLetterListener(this::letterClick);
+        keyboard.setEnterListener(this::enterClick);
+        keyboard.setBackpaceListener(this::backspaceClick);
 
         TextView[][] views = new TextView[6][5];
 
