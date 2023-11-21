@@ -28,18 +28,25 @@ class Atempt {
         }
 
         Map<Character, Answer.Case> cases = new HashMap<>();
-        //TODO Atualizar cores das textviews
         for (int i = 0; i < word.length(); i++) {
             if (!word.contains(inputWord.substring(i, i + 1))) {
                 cases.put(inputWord.charAt(i), Answer.Case.WRONG_LETTER);
+                setColor(letters[i], Answer.Case.WRONG_LETTER);
             } else if (word.charAt(i) == inputWord.charAt(i)) {
                 cases.put(inputWord.charAt(i), Answer.Case.RIGHT_PLACE);
+                setColor(letters[i], Answer.Case.RIGHT_PLACE);
             } else {
                 cases.put(inputWord.charAt(i), Answer.Case.WRONG_PLACE);
+                setColor(letters[i], Answer.Case.WRONG_PLACE);
             }
         }
 
         return new Answer(cases);
+    }
+
+    private void setColor(TextView view, Answer.Case _case){
+        view.setTextColor(_case.getTextColor());
+        view.setBackgroundColor(_case.getBackgroundColor());
     }
 
     private void clear() {
