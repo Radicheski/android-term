@@ -1,6 +1,5 @@
 package dev.radicheski.term;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import dev.radicheski.term.words.WordRepository;
@@ -16,17 +15,25 @@ class Atempt {
         this.letters = views;
     }
 
-    public void checkAnswer() {
-        if (cursor < letters.length) return;
+    public Answer checkAnswer() {
+        if (cursor < letters.length) return Answer.INCOMPLETE_WORD;
 
         String inputWord = getInputWord();
+        if (!WordRepository.checkWord(inputWord)) return Answer.INVALID_WORD; //TODO Apagar conteudo das textviews
 
-        if (!WordRepository.checkWord(inputWord)) {
-            Log.e(getClass().getName(), "Invalid word.");
-            return;
+        Answer.Case[] cases = new Answer.Case[letters.length];
+        //TODO Atualizar cores das textviews
+        for (int i = 0; i < word.length(); i++) {
+            if (!word.contains(inputWord.substring(i, i + 1))) {
+                cases[i] = Answer.Case.WRONG_LETTER;
+            } else if (word.charAt(i) == inputWord.charAt(i)) {
+                cases[i] = Answer.Case.RIGHT_PLACE;
+            } else {
+                cases[i] = Answer.Case.WRONG_PLACE;
+            }
         }
 
-        Log.i(getClass().getName(), Boolean.toString(word.equalsIgnoreCase(inputWord)));
+        return new Answer(cases);
     }
 
     public void deleteLetter() {

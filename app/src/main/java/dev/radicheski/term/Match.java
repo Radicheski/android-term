@@ -2,6 +2,9 @@ package dev.radicheski.term;
 
 import android.widget.TextView;
 
+import java.util.Map;
+import java.util.Objects;
+
 import dev.radicheski.term.words.WordRepository;
 
 public class Match {
@@ -18,8 +21,12 @@ public class Match {
         }
     }
 
-    public void checkAnswer() {
-        atempt[cursor].checkAnswer();
+    public Answer checkAnswer() {
+        Answer answer = atempt[cursor].checkAnswer();
+
+        if (answer.getCases().length > 0) cursor += 1;
+
+        return answer;
     }
 
     public void deleteLetter() {

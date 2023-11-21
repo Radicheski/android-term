@@ -54,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void enterClick(View view) {
         if (view instanceof Button button) {
-            match.checkAnswer();
+            Answer answer = match.checkAnswer();
+            if (answer == Answer.INCOMPLETE_WORD) return;
+            if (answer == Answer.INVALID_WORD) {
+                //TODO Mostrar alerta
+                return;
+            }
+
+            //TODO Atualizar cores do teclado
         }
     }
 
