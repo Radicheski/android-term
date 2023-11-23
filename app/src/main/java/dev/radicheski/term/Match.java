@@ -1,28 +1,36 @@
 package dev.radicheski.term;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.Map;
-import java.util.Objects;
 
 import dev.radicheski.term.words.WordRepository;
 
 public class Match {
 
+    private String word;
     private int cursor = 0;
-    private Atempt[] atempt;
+    private Atempt[] atempts;
 
     public Match(TextView[][] views) {
-        String word = WordRepository.getRandomWord();
+        atempts = new Atempt[views.length];
+        for (int i = 0; i < atempts.length; i++) {
+            atempts[i] = new Atempt(views[i]);
+        }
 
-        atempt = new Atempt[views.length];
-        for (int i = 0; i < atempt.length; i++) {
-            atempt[i] = new Atempt(word, views[i]);
+        newGame();
+    }
+
+    private void newGame() {
+        this.word = WordRepository.getRandomWord();
+
+        for (Atempt atempt: atempts) {
+            atempt.clear();
         }
     }
 
     public Answer checkAnswer() {
-        Answer answer = atempt[cursor].checkAnswer();
+        Answer answer = atempts[cursor].checkAnswer(getNormalizedWord());
 
         if (!answer.getCases().isEmpty()) cursor += 1;
 
@@ -30,11 +38,17 @@ public class Match {
     }
 
     public void deleteLetter() {
-        atempt[cursor].deleteLetter();
+        atempts[cursor].deleteLetter();
     }
 
-    public void addLetter(CharSequence letter) {
-        atempt[cursor].addLetter(letter);
+    public void addLetter(View view) {
+        if (view instanceof Button button) {
+            atempts[cursor].addLetter(button.getText());
+        }
+    }
+
+    private String getNormalizedWord() {
+        return WordRepository.normalize(word);
     }
 
 }

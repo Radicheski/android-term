@@ -22,7 +22,7 @@ class Atempt {
         cursor = 0;
     }
 
-    public void addLetter(String letter) {
+    public void addLetter(CharSequence letter) {
         if (cursor == letters.length) return;
 
         letters[cursor].setText(letter);
