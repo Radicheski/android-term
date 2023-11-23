@@ -29,12 +29,19 @@ public class Match {
         }
     }
 
-    public Answer checkAnswer() {
-        Answer answer = atempts[cursor].checkAnswer(getNormalizedWord());
+    public void checkAnswer() {
+        if (!atempts[cursor].isComplete()) return;
 
-        if (!answer.getCases().isEmpty()) cursor += 1;
+        String input = atempts[cursor].getInput();
+        Answer answer = Answer.of(word, input);
 
-        return answer;
+        if (answer == Answer.INVALID_INPUT) {
+            //TODO AlertDialog
+            atempts[cursor].clear();
+            return;
+        }
+
+
     }
 
     public void deleteLetter() {
@@ -45,10 +52,6 @@ public class Match {
         if (view instanceof Button button) {
             atempts[cursor].addLetter(button.getText());
         }
-    }
-
-    private String getNormalizedWord() {
-        return WordRepository.normalize(word);
     }
 
 }

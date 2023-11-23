@@ -11,11 +11,18 @@ class Atempt {
         this.letters = views;
     }
 
-    public Answer checkAnswer(String word) {
-        if (cursor < letters.length) return Answer.INCOMPLETE_WORD;
-
-        return null; //TODO
+    public String getInput() {
+        StringBuilder builder = new StringBuilder();
+        for (TextView view: letters) {
+            builder.append(view.getText());
+        }
+        return builder.toString();
     }
+
+    public boolean isComplete() {
+        return cursor >= letters.length;
+    }
+
 
     public void clear() {
         for (TextView view: letters) view.setText("");

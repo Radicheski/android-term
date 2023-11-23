@@ -1,48 +1,68 @@
 package dev.radicheski.term;
 
-import android.graphics.Color;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import java.util.Map;
+import dev.radicheski.term.words.WordRepository;
 
 public class Answer {
-
-    public static final Answer INCOMPLETE_WORD = new Answer(Map.of(), null);
-
-    private final Map<Character, Case> cases;
-    private final String input;
-
-    public Answer(Map<Character, Case> cases, String input) {
-        this.cases = cases;
-        this.input = input;
+    
+    public static final Answer INVALID_INPUT = new Answer();
+    
+    private final List<String> rightPlace;
+    private final List<String> wrongPlace;
+    private final List<String> wrongLetter;
+    
+    private Answer() {
+        rightPlace = List.of();
+        wrongPlace = List.of();
+        wrongLetter = List.of();
     }
+    
+    private Answer(CharSequence word, CharSequence guess) {
+        rightPlace = new ArrayList<>();
+        wrongPlace = new ArrayList<>();
+        wrongLetter = new ArrayList<>();
 
-    public Map<Character, Case> getCases() {
-        return cases;
-    }
+        List<Character> letters = new ArrayList<>();
+        Set<Integer> indices = new HashSet<>();
 
-    public String getInput() {
-        return input;
-    }
-
-    public enum Case {
-        WRONG_LETTER,
-        WRONG_PLACE,
-        RIGHT_PLACE;
-
-        public int getTextColor() {
-            return switch (this) {
-                case RIGHT_PLACE -> Color.parseColor("#006100");
-                case WRONG_PLACE -> Color.parseColor("#9C5700");
-                case WRONG_LETTER -> Color.parseColor("#9C0006");
-            };
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == guess.charAt(i)) {
+                rightPlace.add(String.valueOf(guess.charAt(i)));
+            } else {
+                letters.add(word.charAt(i));
+                indices.add(i);
+            }
         }
 
-        public int getBackgroundColor() {
-            return switch (this) {
-                case RIGHT_PLACE -> Color.parseColor("#C6EFCE");
-                case WRONG_PLACE -> Color.parseColor("#FFEB9C");
-                case WRONG_LETTER -> Color.parseColor("#FFC7CE");
-            };
+        for (int i: indices) {
+            int firstIndex = letters.indexOf(guess.charAt(i));
+            if (firstIndex == -1) {
+                wrongLetter.add(String.valueOf(guess.charAt(i)));
+            } else {
+                wrongPlace.add(String.valueOf(guess.charAt(i)));
+                letters.remove(firstIndex);
+            }
         }
+    }
+
+    public static Answer of(CharSequence word, CharSequence guess) {
+        if (!WordRepository.checkWord(guess.toString())) return INVALID_INPUT;
+        return new Answer(word, guess);
+    }
+
+    public List<String> getRightPlace() {
+        return List.copyOf(rightPlace);
+    }
+
+    public List<String> getWrongLetter() {
+        return List.copyOf(wrongPlace);
+    }
+
+    public List<String> getWrongPlace() {
+        return List.copyOf(wrongLetter);
     }
 }
