@@ -59,10 +59,10 @@ public class Answer {
     }
 
     public List<String> getWrongLetter() {
-        return List.copyOf(wrongPlace);
+        return List.copyOf(wrongLetter);
     }
 
     public List<String> getWrongPlace() {
-        return List.copyOf(wrongLetter);
+        return List.copyOf(wrongPlace);
     }
 }
