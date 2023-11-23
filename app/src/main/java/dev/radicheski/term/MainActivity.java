@@ -1,10 +1,9 @@
 package dev.radicheski.term;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,8 +21,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createKeyboard();
         createMatch();
+        createKeyboard();
+
+        keyboard.setLetterListener(match::addLetter);
+        keyboard.setEnterListener(match::checkAnswer);
+        keyboard.setBackpaceListener(match::deleteLetter);
     }
 
     private void createMatch() {
@@ -53,36 +56,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         keyboard = new Keyboard(letterButtons, keyEnter, keyBackspace);
-        keyboard.setLetterListener(this::letterClick);
-        keyboard.setEnterListener(this::enterClick);
-        keyboard.setBackpaceListener(this::backspaceClick);
     }
 
-    private void backspaceClick(View view) {
-        if (view instanceof Button button) {
-            match.deleteLetter();
-        }
-    }
-
-    private void enterClick(View view) {
-        if (view instanceof Button button) {
-            Answer answer = match.checkAnswer();
-            if (answer == Answer.INCOMPLETE_WORD) return;
-            if (answer.getCases().isEmpty() && Objects.nonNull(answer.getInput())) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(String.format("A palavra \"%s\" não foi encontrada.", answer.getInput()));
-                builder.setPositiveButton("OK", null);
-                builder.show();
-                return;
-            }
-            keyboard.updateLayout(answer.getCases());
-        }
-    }
-
-    private void letterClick(View view) {
-        if (view instanceof Button button) {
-            match.addLetter(button.getText());
-        }
+    public void showAlert(String title, String message, Runnable onCompletion){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            if (Objects.nonNull(onCompletion)) onCompletion.run();
+        });
+        builder.show();
     }
 
 }
