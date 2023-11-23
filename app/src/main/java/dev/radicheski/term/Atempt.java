@@ -1,5 +1,6 @@
 package dev.radicheski.term;
 
+import android.graphics.Color;
 import android.widget.TextView;
 
 class Atempt {
@@ -25,7 +26,12 @@ class Atempt {
 
 
     public void clear() {
-        for (TextView view: letters) view.setText("");
+        for (TextView view: letters) {
+            view.setText("");
+            view.setTextColor(Color.BLACK);
+            view.setBackgroundColor(Color.WHITE);
+        }
+
         cursor = 0;
     }
 
@@ -41,6 +47,39 @@ class Atempt {
 
         cursor--;
         letters[cursor].setText(null);
+    }
+
+    public void setLetterColor(int index, int color) {
+        AnswerColor answerColor;
+
+        switch (color) {
+            case Answer.WRONG_LETTER -> answerColor = AnswerColor.WRONG_LETTER;
+            case Answer.WRONG_PLACE -> answerColor = AnswerColor.WRONG_PLACE;
+            case Answer.RIGHT_PLACE -> answerColor = AnswerColor.RIGHT_PLACE;
+            default -> { return; }
+        }
+
+        letters[index].setTextColor(answerColor.text);
+        letters[index].setBackgroundColor(answerColor.background);
+    }
+
+    private enum AnswerColor {
+        RIGHT_PLACE("#006100", "#C6EFCE"),
+        WRONG_PLACE("#9C5700", "#FFEB9C"),
+        WRONG_LETTER("#9C0006", "#FFC7CE");
+
+        private final int text;
+        private final int background;
+
+        AnswerColor(String text, String background) {
+            this.text = Color.parseColor(text);
+            this.background = Color.parseColor(background);
+        }
+
+        public void setTextViewColor(TextView textView) {
+            textView.setTextColor(text);
+            textView.setBackgroundColor(background);
+        }
     }
 
 }
