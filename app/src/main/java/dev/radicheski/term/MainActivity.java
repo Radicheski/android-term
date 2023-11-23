@@ -22,6 +22,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createKeyboard();
+        createMatch();
+    }
+
+    private void createMatch() {
+        TextView[][] views = new TextView[6][5];
+
+        for (int atempt = 0; atempt < 6; atempt++) {
+            for (int letter = 0; letter < 5; letter++) {
+                int id = getResources().getIdentifier("atempt" + atempt + "_letter" + letter, "id", getPackageName());
+                views[atempt][letter] = findViewById(id);
+            }
+        }
+
+        WordRepository.setContext(getApplicationContext());
+        match = new Match(views);
+    }
+
+    private void createKeyboard() {
         Button keyBackspace = findViewById(R.id.keyBackspace);
         Button keyEnter = findViewById(R.id.keyEnter);
 
@@ -37,18 +56,6 @@ public class MainActivity extends AppCompatActivity {
         keyboard.setLetterListener(this::letterClick);
         keyboard.setEnterListener(this::enterClick);
         keyboard.setBackpaceListener(this::backspaceClick);
-
-        TextView[][] views = new TextView[6][5];
-
-        for (int atempt = 0; atempt < 6; atempt++) {
-            for (int letter = 0; letter < 5; letter++) {
-                int id = getResources().getIdentifier("atempt" + atempt + "_letter" + letter, "id", getPackageName());
-                views[atempt][letter] = findViewById(id);
-            }
-        }
-
-        WordRepository.setContext(getApplicationContext());
-        match = new Match(views);
     }
 
     private void backspaceClick(View view) {
