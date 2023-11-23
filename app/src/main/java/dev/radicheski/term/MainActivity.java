@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         keyboard.setLetterListener(match::addLetter);
         keyboard.setEnterListener(match::checkAnswer);
         keyboard.setBackpaceListener(match::deleteLetter);
+
+        match.setKeyboard(keyboard);
     }
 
     private void createMatch() {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         WordRepository.setContext(getApplicationContext());
         match = new Match(views);
+        match.setActivity(this);
     }
 
     private void createKeyboard() {

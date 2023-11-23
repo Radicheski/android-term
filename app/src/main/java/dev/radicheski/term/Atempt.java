@@ -19,8 +19,8 @@ class Atempt {
         return builder.toString();
     }
 
-    public boolean isComplete() {
-        return cursor >= letters.length;
+    public boolean isIncomplete() {
+        return cursor < letters.length;
     }
 
 
