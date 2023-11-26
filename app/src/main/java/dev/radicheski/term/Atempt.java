@@ -27,9 +27,8 @@ class Atempt {
 
     public void clear() {
         for (TextView view: letters) {
+            AnswerColor.BLANK.setTextViewColor(view);
             view.setText("");
-            view.setTextColor(Color.BLACK);
-            view.setBackgroundColor(Color.WHITE);
         }
 
         cursor = 0;
@@ -50,20 +49,15 @@ class Atempt {
     }
 
     public void setLetterColor(int index, int color) {
-        AnswerColor answerColor;
-
         switch (color) {
-            case Answer.WRONG_LETTER -> answerColor = AnswerColor.WRONG_LETTER;
-            case Answer.WRONG_PLACE -> answerColor = AnswerColor.WRONG_PLACE;
-            case Answer.RIGHT_PLACE -> answerColor = AnswerColor.RIGHT_PLACE;
-            default -> { return; }
+            case Answer.WRONG_LETTER -> AnswerColor.WRONG_LETTER.setTextViewColor(letters[index]);
+            case Answer.WRONG_PLACE -> AnswerColor.WRONG_PLACE.setTextViewColor(letters[index]);
+            case Answer.RIGHT_PLACE -> AnswerColor.RIGHT_PLACE.setTextViewColor(letters[index]);
         }
-
-        letters[index].setTextColor(answerColor.text);
-        letters[index].setBackgroundColor(answerColor.background);
     }
 
     private enum AnswerColor {
+        BLANK("#FFFFFF", "#CCCCCC"),
         RIGHT_PLACE("#006100", "#C6EFCE"),
         WRONG_PLACE("#9C5700", "#FFEB9C"),
         WRONG_LETTER("#9C0006", "#FFC7CE");
