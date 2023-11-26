@@ -43,6 +43,11 @@ public class Match {
         String input = atempts[cursor].getInput();
         Answer answer = Answer.of(getNormalizedWord(), input);
 
+        if (answer.getRightPlace().size() == word.length()) {
+            String message = String.format("A palavra é \"%s\".", word);
+            showAlert("Você acertou", message, this::newGame);
+        }
+
         if (answer == Answer.INVALID_INPUT) {
             showAlert("Palavra inválida", String.format("A palavra \"%s\" não foi encontrada.", input), atempts[cursor]::clear);
         } else {
@@ -52,12 +57,9 @@ public class Match {
 
             cursor++;
             updateKeyboard(answer);
-            //FIXME Verificar se o usuário acertou a palavra antes de acabar as tentativas
             if (cursor == atempts.length) {
-                String title = answer.getRightPlace().size() == word.length() ? "Você acertou" : "Você errou";
                 String message = String.format("A palavra é \"%s\".", word);
-
-                showAlert(title, message, this::newGame);
+                showAlert("Você errou", message, this::newGame);
             }
         }
     }
